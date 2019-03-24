@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Album example · Bootstrap</title>
+    <title>Andrew's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -40,9 +41,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" href="#">Resume</a>
-            <a class="nav-item nav-link" href="#">Music</a>
-            <a class="nav-item nav-link active"  href="#">Blog</a>
+            <a class="nav-item nav-link" href="{% static 'resume.pdf'%}">Resume</a>
+            <a class="nav-item nav-link" href="http://soundcloud.com/andrewpmusic">Music</a>
+            <a class="nav-item nav-link active" href="{% url 'bloghome' %}">Blog</a>
             <a class="nav-item nav-link" href="#">Photography</a>
           </div>
         </div>
@@ -60,7 +61,7 @@
   <h2>Latest Post</h2>
   <hr />
   {% for blog in blogs.all %}
-    <a href=""><h3>{{ blog.title }}</h3></a>
+    <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
     {{ blog.pub_date_pretty }}
     <br />
     <img class = "img-fluid" src="{{ blog.image.url }}" height=200 width=200>
